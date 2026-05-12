@@ -1,25 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud To-Do List</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Proust Moment Café</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <div class="container">
-        <h1>Cloud To-Do List</h1>
+<header>
+  <div class="logo">Proust Moment Café</div>
 
-        <div class="task-input">
-            <input type="text" id="taskInput" placeholder="Enter a task">
-            <button onclick="addTask()">Add</button>
-        </div>
+  <nav>
+    <button onclick="showPage('home')">home</button>
+    <button onclick="showPage('orderType')">order</button>
+    <button onclick="showPage('menu')">menu</button>
+    <button onclick="showPage('about')">about</button>
+    <button onclick="showPage('contact')">contact</button>
+  </nav>
+</header>
 
-        <ul id="taskList"></ul>
+<section class="page active home" id="home">
+  <div class="home-box">
+    <h1>Proust Moment Café</h1>
+    <p class="welcome-text">cozy coffee • matcha • handmade desserts</p>
+
+    <p class="home-description">
+      Welcome to our soft vintage café website inspired by warm coffee mornings,
+      matcha drinks, and sweet desserts.
+    </p>
+
+    <div class="buttons">
+      <button onclick="showPage('orderType')" class="btn">start order</button>
+      <button onclick="showPage('about')" class="btn">about us</button>
+    </div>
+  </div>
+</section>
+
+<section class="page order-type" id="orderType">
+  <div class="section-title">
+    <p>choose your order style</p>
+    <h2>Order Type</h2>
+  </div>
+
+  <div class="order-type-grid">
+    <div class="type-card" onclick="chooseOrderType('Dine In')">
+      <div class="type-icon">☕</div>
+      <h3>Dine In</h3>
+      <p>Enjoy your coffee and dessert inside our cozy café.</p>
+      <button class="btn">choose</button>
     </div>
 
-    <script src="script.js"></script>
+    <div class="type-card" onclick="chooseOrderType('Take Away')">
+      <div class="type-icon">🛍️</div>
+      <h3>Take Away</h3>
+      <p>Pick your order and take your sweet moment with you.</p>
+      <button class="btn">choose</button>
+    </div>
+  </div>
 
+  <div class="buttons">
+    <button onclick="showPage('home')" class="btn">back</button>
+  </div>
+</section>
+
+<section class="page menu-page" id="menu">
+  <div class="section-title">
+    <p id="selectedTypeText">choose items for your order</p>
+    <h2>Our Menu</h2>
+  </div>
+
+  <div class="menu-grid">
+
+    <div class="menu-card">
+      <img src="https://i.pinimg.com/1200x/c2/03/15/c20315fb7f66fd454c4d2757a98058fd.jpg">
+      <h3>Latte Coffee</h3>
+      <p>Espresso with creamy milk</p>
+      <span>18 SAR</span>
+      <button onclick="addToCart('Latte Coffee', 18, 'https://i.pinimg.com/1200x/c2/03/15/c20315fb7f66fd454c4d2757a98058fd.jpg')" class="btn">add</button>
+    </div>
+
+    <div class="menu-card">
+      <img src="https://i.pinimg.com/1200x/5e/40/77/5e40771b5593bdb0ab02a538f733c9c3.jpg">
+      <h3>Iced Coffee</h3>
+      <p>Cold coffee with ice</p>
+      <span>16 SAR</span>
+      <button onclick="addToCart('Iced Coffee', 16, 'https://i.pinimg.com/1200x/5e/40/77/5e40771b5593bdb0ab02a538f733c9c3.jpg')" class="btn">add</button>
+    </div>
+
+    <div class="menu-card">
+      <img src="https://i.pinimg.com/736x/5c/72/f3/5c72f3a21e7217bc27ffcf3c83e94d96.jpg">
+      <h3>Matcha Latte</h3>
+      <p>Japanese matcha with milk</p>
+      <span>22 SAR</span>
+      <button onclick="addToCart('Matcha Latte', 22, 'https://images.unsplash.com/photo-1568649929103-28ffbefaca1e?auto=format&fit=crop&w=600&q=80https://i.pinimg.com/736x/5c/72/f3/5c72f3a21e7217bc27ffcf3c83e94d96.jpg')" class="btn">add</button>
+    </div>
+
+    <div class="menu-card">
+      <img src="https://i.pinimg.com/1200x/70/02/0e/70020eeba23f1b57c7c99fc2aeff80ca.jpg">
+      <h3>Iced Matcha</h3>
+      <p>Refreshing iced matcha</p>
+      <span>24 SAR</span>
+      <button onclick="addToCart('Iced Matcha', 24, 'https://i.pinimg.com/1200x/70/02/0e/70020eeba23f1b57c7c99fc2aeff80ca.jpg')" class="btn">add</button>
+    </div>
+
+    <div class="menu-card">
+      <img src="https://i.pinimg.com/1200x/5e/10/38/5e10383b6d28536bd27db895e693efdc.jpg">
+      <h3>Chocolate Cake</h3>
+      <p>Soft chocolate dessert</p>
+      <span>24 SAR</span>
+      <button onclick="addToCart('Chocolate Cake', 24, 'https://i.pinimg.com/1200x/5e/10/38/5e10383b6d28536bd27db895e693efdc.jpg')" class="btn">add</button>
+    </div>
+
+    <div class="menu-card">
+      <img src="https://i.pinimg.com/1200x/58/3a/22/583a22ba8038860cf7f66408139f90c0.jpg">
+      <h3>Cheesecake</h3>
+      <p>Creamy classic cheesecake</p>
+      <span>26 SAR</span>
+      <button onclick="addToCart('Cheesecake', 26, 'https://i.pinimg.com/1200x/58/3a/22/583a22ba8038860cf7f66408139f90c0.jpg')" class="btn">add</button>
+    </div>
+
+  </div>
+
+  <div class="cart-box">
+    <h3>pink basket</h3>
+    <div id="cartItems">Your basket is empty.</div>
+    <p id="cartTotal">Total: 0 SAR</p>
+  </div>
+
+  <div class="buttons">
+    <button onclick="showPage('orderType')" class="btn">back</button>
+    <button onclick="showReceipt()" class="btn">show receipt</button>
+  </div>
+</section>
+
+<section class="page receipt-page" id="receipt">
+  <div class="receipt-scene">
+    <div id="receiptImages" class="receipt-images"></div>
+
+    <div class="receipt-paper">
+      <h2>CAKE SHOP</h2>
+      <p class="receipt-date">Proust Moment Café</p>
+      <p id="receiptType" class="receipt-type"></p>
+
+      <div id="receiptItems" class="receipt-items"></div>
+
+      <div class="receipt-line"></div>
+
+      <div class="receipt-total">
+        <strong>TOTAL:</strong>
+        <strong id="receiptTotal">0 SAR</strong>
+      </div>
+
+      <div class="receipt-line"></div>
+
+      <p class="thanks">Thank you for your visit</p>
+
+      <div class="buttons">
+        <button onclick="showPage('menu')" class="btn">back</button>
+        <button onclick="clearOrder()" class="btn">new order</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page about" id="about">
+  <div class="paper-card">
+    <h2>About Us</h2>
+
+    <p>
+      Proust Moment Café is a cozy bakery and coffee shop made for people who love
+      warm coffee, matcha drinks, and handmade desserts.
+    </p>
+
+    <p>
+      This website helps customers view the café menu online and enjoy a soft vintage café experience.
+    </p>
+
+    <div class="buttons">
+      <button onclick="showPage('home')" class="btn">back</button>
+      <button onclick="showPage('gallery')" class="btn">next</button>
+    </div>
+  </div>
+</section>
+
+
+<section class="page contact" id="contact">
+  <div class="paper-card">
+    <h2>Contact</h2>
+    <p>Email: info@proustcafe.com</p>
+    <p>Phone: 055 123 4567</p>
+    <p>Location: Makkah, Saudi Arabia</p>
+
+    <div class="buttons">
+      <button onclick="showPage('gallery')" class="btn">back</button>
+      <button onclick="showPage('home')" class="btn">home</button>
+    </div>
+  </div>
+</section>
+
+<script src="script.js"></script>
 </body>
 </html>
